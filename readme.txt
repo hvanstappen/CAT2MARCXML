@@ -1,0 +1,1 @@
+Convert CATXML to MARCXML This is a XML stylesheet which can convert librray records in propietary CATXML (from the Brocade library management system) to MARCXML. It was developed for a specific instance form Brocade, so not all elements from the CATXML namespace are included (yet). There's no stylesheet for the authorities either.
