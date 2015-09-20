@@ -1,1 +1,3 @@
-Convert CATXML to MARCXML This is a XML stylesheet which can convert librray records in propietary CATXML (from the Brocade library management system) to MARCXML. It was developed for a specific instance form Brocade, so not all elements from the CATXML namespace are included (yet). There's no stylesheet for the authorities either.
+Convert CATXML to MARCXML This is a XML stylesheet which can convert library records in propietary CATXML (from the Brocade library management system) to MARCXML. It was developed for a specific instance form Brocade, so not all elements from the CATXML namespace may be included (yet). 
+The DTD for the CATXML can be found at http://webi.provant.be/brocade/catalog/catxml.dtd
+There's no stylesheet for the authorities either.
