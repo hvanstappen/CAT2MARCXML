@@ -110,7 +110,22 @@
             </xsl:for-each>
             <xsl:for-each select="BSECTION/NR[@ty='mm']">
                 <xsl:comment>Other Standard Identifier</xsl:comment>
-                <marc:datafield tag="024" ind1=" " ind2=" ">
+                <marc:datafield tag="024" ind1="8" ind2=" ">
+                    <marc:subfield code="2">
+                        <xsl:text>STCV</xsl:text>
+                    </marc:subfield>
+                    <marc:subfield code="a">
+                        <xsl:value-of select="@br"/>
+                    </marc:subfield>
+                    <marc:subfield code="a">
+                        <xsl:value-of select="substring-after(@br,'STCV')"></xsl:value-of>
+                        
+                    </marc:subfield>
+                </marc:datafield>
+            </xsl:for-each>
+            <xsl:for-each select="BSECTION/NR[@ty='br']">
+                <xsl:comment>Other standard identifier: STCV Identifier</xsl:comment>
+                <marc:datafield tag="024" ind1="7" ind2="0">
                     <marc:subfield code="a">
                         <xsl:value-of select="@nr"/>
                     </marc:subfield>
@@ -500,6 +515,14 @@
                             </marc:subfield>
                         </marc:datafield>
                     </xsl:when>
+                    <xsl:when test="@ty='br'">
+                        <xsl:comment>Electronic Location and Access</xsl:comment>
+                        <marc:datafield tag="856" ind1="4" ind2="2">
+                            <marc:subfield code="3">STCV entry</marc:subfield>
+                            <marc:subfield code="u"><xsl:value-of select="DATA"/>
+                            </marc:subfield>
+                        </marc:datafield>
+                    </xsl:when>
                     <!-- alle andere opmerkingen -->
                     <xsl:otherwise>
                         <xsl:comment>General Note: all other notes not recognized (yet)</xsl:comment>
@@ -596,6 +619,7 @@
                             <xsl:when test="@lm='art'">artikel</xsl:when>
                             <xsl:when test="@lm='mm'">multimedia</xsl:when>
                             <xsl:when test="@lm='docmap'">documentatiemap</xsl:when>
+                            <xsl:when test="@lm='od'">oude druk</xsl:when>
                             <xsl:otherwise>ander</xsl:otherwise>
                         </xsl:choose>
                     </marc:subfield>
@@ -763,20 +787,20 @@
                             </marc:subfield>
                             <!-- splits barcode en inv nr uit OBJINX -->
                             <xsl:for-each select="VOL/OBJ/OBJINX">
-                                <xsl:if test="(@ty='bc')">
+                                <xsl:if test="(@ty='inv')">
                                     <marc:subfield code="p">
                                         <xsl:value-of select="DATA"/>
                                     </marc:subfield>
                                 </xsl:if>
                             </xsl:for-each>
-                            <!-- sufield code 't' is eigenlijk niet correct -->
+                            <!-- barcodenummer moet niet worden bewaard Indien wel: geschreven naar $t, maar dit is niet helemaal correct)
                             <xsl:for-each select="VOL/OBJ/OBJINX">
-                                <xsl:if test="(@ty='inv')">
+                                <xsl:if test="(@ty='bc')">
                                     <marc:subfield code="t">
                                         <xsl:value-of select="DATA"/>
                                     </marc:subfield>
                                 </xsl:if>
-                            </xsl:for-each>
+                                </xsl:for-each> -->
                             <!-- splits barcode en inv nr uit OBJINX -->
                             <marc:subfield code="x">
                                 <xsl:value-of select="VOL/OBJ/OBJNOTE/DATA"/>
