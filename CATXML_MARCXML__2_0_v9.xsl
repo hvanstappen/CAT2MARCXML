@@ -1145,7 +1145,7 @@
             <marc:datafield tag="887" ind1=" " ind2=" ">
                 <marc:subfield code="a">
                     <xsl:value-of
-                        select="concat(floor(number($JaarQuotientcd)),'-',$MaandQuotient2cd,'-??')"
+                        select="concat(floor(number($JaarQuotientcd)),'-',$MaandQuotient2cd,'-00')"
                     />
                 </marc:subfield>
                 
@@ -1156,7 +1156,7 @@
             <marc:datafield tag="887" ind1=" " ind2=" ">
                 <marc:subfield code="a">
                     <xsl:value-of
-                        select="concat(floor(number($JaarQuotient)),'-',$MaandQuotient2,'-??')"
+                        select="concat(floor(number($JaarQuotient)),'-',$MaandQuotient2,'-00')"
                     />
                 </marc:subfield>
                 
